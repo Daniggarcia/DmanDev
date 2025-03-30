@@ -186,21 +186,6 @@ export default function Home() {
             <h2 className="text-sm md:text-base text-zinc-400 max-w-xl mx-auto px-4">
               Bienvenido a mi portfolio. Me llaman Dman, y espero que disfrutes de este viaje tanto como Chewbacca disfruta acompañando a Han Solo.
             </h2>
-            
-            <div className="mt-8 flex justify-center gap-4">
-              <Link
-                href="/projects"
-                className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg shadow-blue-700/20 transition-all duration-200 hover:scale-105"
-              >
-                Ver Proyectos
-              </Link>
-              <Link
-                href="/contact"
-                className="px-5 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg border border-zinc-600 transition-all duration-200 hover:scale-105"
-              >
-                Contacto
-              </Link>
-            </div>
           </motion.div>
         </>
       )}
