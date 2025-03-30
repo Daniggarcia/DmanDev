@@ -3,8 +3,29 @@
 @tailwind utilities;
 
 @layer base {
-  .text-edge-outline {
-    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+  :root {
+    --primary: #18181b;     /* Zinc-900 */
+    --primary-light: #3f3f46; /* Zinc-700 */
+    --accent: #2563eb;      /* Blue-600 */
+    --text-primary: #f4f4f5; /* Zinc-100 */
+    --text-secondary: #a1a1aa; /* Zinc-400 */
+    --card-bg: rgba(24, 24, 27, 0.7); /* Zinc-900 con transparencia */
   }
-} 
+  
+  /* Modo oscuro por defecto con estilo para los textos */
+  body {
+    @apply bg-zinc-900 text-zinc-100;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Transiciones suaves */
+  a, button {
+    @apply transition-all duration-200;
+  }
+  
+  /* Desplazamiento suave */
+  html {
+    scroll-behavior: smooth;
+  }
+}
 

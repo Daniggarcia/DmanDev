@@ -12,12 +12,13 @@ export default function ProjectsPage() {
 
   console.log("Proyectos cargados: ", allProjects);
 
-  const featured = allProjects.find((project) => project.slug === "test");
-  const top2 = allProjects.find((project) => project.slug === "planetfall");
-  const top3 = allProjects.find((project) => project.slug === "highstorm");
-
-  if (!featured || !top2 || !top3) {
-    console.warn("One or more featured projects are missing.");
+  const featured = allProjects.find((project) => project.slug === "Repsol") || allProjects[0];
+  const top2 = allProjects.find((project) => project.slug === "planetfall") || allProjects[1];
+  const top3 = allProjects.find((project) => project.slug === "highstorm") || allProjects[2];
+  
+  const hasEnoughProjects = allProjects.length >= 3;
+  if (!hasEnoughProjects) {
+    console.warn("Not enough projects available. Need at least 3 projects.");
   }
 
   const sorted = allProjects

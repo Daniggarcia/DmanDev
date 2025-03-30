@@ -33,13 +33,14 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 	}
 	useEffect(() => {
 		if (!ref.current) return;
-		const observer = new IntersectionObserver(([entry]) =>
-			setIntersecting(entry.isIntersecting),
+		const observer = new IntersectionObserver(
+		  ([entry]) => setIntersecting(entry.isIntersecting),
+		  { threshold: 0.1 }
 		);
-
+	  
 		observer.observe(ref.current);
 		return () => observer.disconnect();
-	}, []);
+	  }, []);
 
 	return (
 		<header
