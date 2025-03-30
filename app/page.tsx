@@ -184,7 +184,7 @@ export default function Home() {
             transition={{ delay: 4, duration: 1 }}
           >
             <h2 className="text-sm md:text-base text-zinc-400 max-w-xl mx-auto px-4">
-              Bienvenido a mi portfolio. Me llaman Dman, y espero que disfrutes de este viaje tanto como Chewbacca disfruta acompañando a Han Solo.
+            Welcome to my portfolio. They call me Dman, and I hope you enjoy this journey as much as Chewbacca enjoys accompanying Han Solo.
             </h2>
           </motion.div>
         </>
