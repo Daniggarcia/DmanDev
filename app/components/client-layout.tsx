@@ -103,7 +103,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
             </div>
 
             {/* 3. CONTENT LAYER */}
-            <div className="relative z-40 w-full h-full">
+            <div className="relative z-40 w-full h-full p-[12px] md:p-[24px]">
                 {children}
             </div>
         </div>
