@@ -35,23 +35,23 @@ export default async function PostPage({ params }: Props) {
     <div className="w-full h-full flex flex-col items-center justify-center relative z-40 p-2 md:p-8 mt-12 md:mt-0">
 
       {/* 2. THE DETAILED MONITOR (CONTENT WINDOW) */}
-      <div className="relative z-10 w-full h-[85vh] md:h-[80vh] max-w-6xl bg-black border-2 border-zinc-800 rounded-lg overflow-hidden shadow-[0_0_100px_rgba(0,0,0,1)] flex flex-col">
+      <div className="relative z-10 w-full h-[70vh] md:h-[65vh] max-w-6xl bg-black border-2 border-zinc-800 rounded-lg overflow-hidden shadow-[0_0_100px_rgba(0,0,0,1)] flex flex-col">
 
         {/* Technical Header Integrated */}
         <Header project={project} views={0} />
 
         {/* Scrollable Project Content Area */}
-        <div className="flex-1 overflow-y-auto overflow-x-hidden p-8 md:p-16 bg-black/40 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden px-8 pt-8 pb-6 md:px-16 md:pt-16 md:pb-10 bg-black/40 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
           <div className="max-w-4xl mx-auto">
             <article className="prose prose-invert prose-zinc prose-quoteless max-w-none">
               <Mdx code={project.body.code} />
             </article>
 
             {/* Technical Footer Decoration inside the scroll area */}
-            <div className="mt-20 pt-8 border-t border-zinc-900/50 flex flex-col md:flex-row justify-between items-center gap-4 opacity-30">
-              <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest text-center md:text-left">End of secure project stream</span>
+            <div className="mt-10 pt-8 border-t border-zinc-900/50 flex flex-col md:flex-row justify-between items-center gap-4">
+              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest text-center md:text-left">End of secure project stream</span>
               <div className="hidden md:block h-px flex-1 mx-8 bg-zinc-900" />
-              <span className="text-[10px] font-mono text-zinc-600">ID: {project.slug.toUpperCase()} // STATUS: ARCHIVE_STABLE</span>
+              <span className="text-[10px] font-mono text-zinc-500">ID: {project.slug.toUpperCase()} // STATUS: ARCHIVE_STABLE</span>
             </div>
           </div>
         </div>

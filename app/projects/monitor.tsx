@@ -93,7 +93,7 @@ export function ProjectMonitor({ projects = [] }: { projects: any[] }) {
                                     <div className="text-[10px] text-cyan-700 font-mono mb-2 uppercase tracking-widest">
                                         ESTABLISHED: {currentProject.date ? new Date(currentProject.date).getFullYear() : 'CLASSIFIED'}
                                     </div>
-                                    <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 uppercase tracking-tighter leading-none text-glow">
+                                    <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-6 uppercase tracking-tighter leading-none text-glow">
                                         {currentProject.title}
                                     </h3>
                                     <p className="text-zinc-500 text-sm md:text-lg leading-relaxed mb-8 md:line-clamp-4 lg:line-clamp-none max-w-2xl">

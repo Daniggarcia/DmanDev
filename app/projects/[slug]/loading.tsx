@@ -24,7 +24,7 @@ export default function Loading() {
 
                 <div className="space-y-4 text-center">
                     <h2 className="text-cyan-500 font-mono text-sm tracking-[0.4em] uppercase animate-pulse">
-                        Sincronizando flujo de datos
+                        Synchronizing data flow
                     </h2>
 
                     {/* Progress Bar Container */}
