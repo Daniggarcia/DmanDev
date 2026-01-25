@@ -115,9 +115,9 @@ export default function Particles({
 		const y = Math.floor(Math.random() * canvasSize.current.h);
 		const translateX = 0;
 		const translateY = 0;
-		const size = Math.floor(Math.random() * 1.5) + 0.1;
+		const size = Math.floor(Math.random() * 2) + 0.5; // Slightly larger stars
 		const alpha = 0;
-		const targetAlpha = parseFloat((Math.random() * 0.6 + 0.1).toFixed(1));
+		const targetAlpha = parseFloat((Math.random() * 0.5 + 0.3).toFixed(1)); // Brighter stars
 		const dx = (Math.random() - 0.5) * 0.2;
 		const dy = (Math.random() - 0.5) * 0.2;
 		const magnetism = 0.1 + Math.random() * 4;
@@ -229,7 +229,7 @@ export default function Particles({
 				}
 
 				const angle = Math.atan2(circle.y - cy, circle.x - cx);
-				const speed = 20;
+				const speed = 8; // Reduced for smoother travel
 
 				circle.x += Math.cos(angle) * speed;
 				circle.y += Math.sin(angle) * speed;
