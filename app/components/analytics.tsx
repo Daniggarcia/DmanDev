@@ -2,14 +2,14 @@
 
 export function Analytics() {
 	const token = process.env.NEXT_PUBLIC_BEAM_TOKEN;
-	if (!token) {
-		return null;
+	if (!token || typeof window === 'undefined') {
+	  return null;
 	}
 	return (
-		<script
-			src="https://beamanalytics.b-cdn.net/beam.min.js"
-			data-token={token}
-			async
-		/>
+	  <script
+		src="https://beamanalytics.b-cdn.net/beam.min.js"
+		data-token={token}
+		async
+	  />
 	);
-}
+  }
