@@ -4,28 +4,178 @@
 
 @layer base {
   :root {
-    --primary: #18181b;     /* Zinc-900 */
-    --primary-light: #3f3f46; /* Zinc-700 */
-    --accent: #2563eb;      /* Blue-600 */
-    --text-primary: #f4f4f5; /* Zinc-100 */
-    --text-secondary: #a1a1aa; /* Zinc-400 */
-    --card-bg: rgba(24, 24, 27, 0.7); /* Zinc-900 con transparencia */
+    --primary: #18181b;
+    /* Zinc-900 */
+    --primary-light: #3f3f46;
+    /* Zinc-700 */
+    --accent: #2563eb;
+    /* Blue-600 */
+    --text-primary: #f4f4f5;
+    /* Zinc-100 */
+    --text-secondary: #a1a1aa;
+    /* Zinc-400 */
+    --card-bg: rgba(24, 24, 27, 0.7);
+    /* Zinc-900 con transparencia */
   }
-  
+
   /* Modo oscuro por defecto con estilo para los textos */
   body {
     @apply bg-zinc-900 text-zinc-100;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  
+
   /* Transiciones suaves */
-  a, button {
+  a,
+  button {
     @apply transition-all duration-200;
   }
-  
+
   /* Desplazamiento suave */
   html {
     scroll-behavior: smooth;
   }
 }
 
+@layer components {
+  .holographic {
+    @apply relative overflow-hidden border border-blue-500/30 bg-blue-900/10 text-blue-100 backdrop-blur-sm;
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.2);
+  }
+
+  .holographic::before {
+    content: "";
+    @apply absolute inset-0 pointer-events-none opacity-50;
+    background-image: linear-gradient(transparent 50%, rgba(37, 99, 235, 0.1) 50%);
+    background-size: 100% 4px;
+    animation: scanline 4s linear infinite;
+  }
+
+  .holographic:hover {
+    @apply border-blue-400/60 bg-blue-800/20 text-white;
+    box-shadow: 0 0 25px rgba(37, 99, 235, 0.4);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(37, 99, 235, 0.5);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-glow 3s infinite ease-in-out;
+}
+
+@layer utilities {
+  .blink-red {
+    animation: blink-red 2s infinite;
+  }
+
+  .blink-blue {
+    animation: blink-blue 3s infinite;
+  }
+
+  .blink-green {
+    animation: blink-green 4s infinite;
+  }
+
+  .blink-random {
+    animation: blink-random 5s infinite;
+  }
+
+  .clip-path-corner-tl {
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 80% 100%, 0 100%);
+  }
+
+  .clip-path-corner-tr {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%, 0 60%);
+  }
+}
+
+@keyframes blink-red {
+
+  0%,
+  100% {
+    background-color: #7f1d1d;
+    box-shadow: 0 0 2px #7f1d1d;
+  }
+
+  50% {
+    background-color: #ef4444;
+    box-shadow: 0 0 10px #ef4444;
+  }
+}
+
+@keyframes blink-blue {
+
+  0%,
+  100% {
+    background-color: #1e3a8a;
+    box-shadow: 0 0 2px #1e3a8a;
+  }
+
+  50% {
+    background-color: #3b82f6;
+    box-shadow: 0 0 10px #3b82f6;
+  }
+}
+
+@keyframes blink-green {
+
+  0%,
+  100% {
+    background-color: #14532d;
+    box-shadow: 0 0 2px #14532d;
+  }
+
+  50% {
+    background-color: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+  }
+}
+
+@keyframes blink-random {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 0.3;
+  }
+
+  60% {
+    opacity: 0.8;
+  }
+
+  80% {
+    opacity: 0.2;
+  }
+}
