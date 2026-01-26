@@ -4,7 +4,7 @@ import React from "react";
 
 export const IdeInfoPanel = () => {
     return (
-        <div className="hidden md:block absolute bottom-0 left-0 mb-28 md:mb-32 ml-12 md:ml-24 w-full max-w-sm lg:max-w-md bg-[#1e1e1e]/40 backdrop-blur-md border border-[#333]/50 rounded-lg shadow-2xl font-mono text-xs overflow-hidden select-none z-30">
+        <div className="block absolute bottom-20 left-2 md:bottom-0 md:left-0 mb-4 md:mb-32 ml-0 md:ml-24 w-[90vw] md:w-full max-w-sm lg:max-w-md bg-[#1e1e1e]/40 backdrop-blur-md border border-[#333]/50 rounded-lg shadow-2xl font-mono text-xs overflow-hidden select-none z-30 scale-90 md:scale-100 origin-bottom-left">
             {/* VS Code Title Bar */}
             <div className="bg-[#252526]/60 px-3 py-1 flex items-center justify-between border-b border-[#333]/50">
                 <span className="text-[#cccccc]">cockpit_controls.ts</span>
@@ -53,18 +53,31 @@ export const IdeInfoPanel = () => {
                 <div className="flex">
                     <span className="text-[#858585] w-6 select-none">6</span>
                     <div className="pl-4">
-                        <span className="text-[#6a9955]">// Button 4 (Red)</span>
+                        <span className="text-[#6a9955]">// Button 3 (Orange)</span>
                     </div>
                 </div>
                 <div className="flex">
                     <span className="text-[#858585] w-6 select-none">7</span>
+                    <div className="pl-4">
+                        <span className="text-[#9cdcfe]">hyperJump</span>: <span className="text-[#ce9178]">'Change Galaxy'</span>;
+                    </div>
+                </div>
+
+                <div className="flex">
+                    <span className="text-[#858585] w-6 select-none">8</span>
+                    <div className="pl-4">
+                        <span className="text-[#6a9955]">// Button 4 (Red)</span>
+                    </div>
+                </div>
+                <div className="flex">
+                    <span className="text-[#858585] w-6 select-none">9</span>
                     <div className="pl-4">
                         <span className="text-[#9cdcfe]">switchTheme</span>: <span className="text-[#ce9178]">'Color Mode'</span>;
                     </div>
                 </div>
 
                 <div className="flex">
-                    <span className="text-[#858585] w-6 select-none">8</span>
+                    <span className="text-[#858585] w-6 select-none">10</span>
                     <div>{"}"}</div>
                 </div>
             </div>
