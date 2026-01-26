@@ -4,11 +4,27 @@ import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Particles from "./particles";
+import { CodeTerminal } from "./code-terminal";
+import { TechInfoModal } from "./tech-info-modal";
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const isHome = pathname === "/";
     const isProjects = pathname === "/projects" || pathname.startsWith("/projects/");
+
+    const [showTechInfo, setShowTechInfo] = useState(false);
+
+    // New Features: Warp & Theme
+    const [isWarpSpeed, setIsWarpSpeed] = useState(false);
+    const [theme, setTheme] = useState<"cyan" | "red" | "green">("cyan");
+
+    const cycleTheme = () => {
+        setTheme(prev => {
+            if (prev === "cyan") return "red";
+            if (prev === "red") return "green";
+            return "cyan";
+        });
+    };
 
     // Parallax logic
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -82,7 +98,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
                 <Particles
                     className="absolute inset-0"
                     quantity={isHome ? 450 : 250} // More stars
-                    warp={isHome} // Warp ONLY on Home
+                    warp={isWarpSpeed} // Warp ONLY on Home or when activated
                     refresh={true}
                 />
             </div>
@@ -122,13 +138,66 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
                     </div>
 
                     {/* Bottom Status Bar */}
-                    <div className="absolute bottom-0 left-0 w-full h-12 md:h-16 bg-zinc-900 border-t-2 border-zinc-800 flex justify-center items-center px-10">
-                        <div className="w-1/2 h-1.5 bg-zinc-950 rounded-full overflow-hidden flex">
-                            <motion.div
-                                animate={{ width: ["10%", "90%", "40%", "75%"] }}
-                                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                                className="h-full bg-cyan-600/40"
-                            />
+                    <div className="absolute bottom-0 left-0 w-full h-12 md:h-20 bg-zinc-900 border-t-2 border-zinc-800 flex justify-between items-center px-4 md:px-10 gap-8 overflow-hidden">
+
+                        {/* 1. Left: System Status (Smaller Bar) */}
+                        <div className="flex flex-col gap-1 w-1/3">
+                            <div className="text-[8px] text-zinc-600 font-mono tracking-widest uppercase">System Load</div>
+                            <div className="w-full h-1 bg-zinc-950 rounded-full overflow-hidden flex">
+                                <motion.div
+                                    animate={{ width: ["10%", "90%", "40%", "75%"] }}
+                                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                                    className="h-full bg-cyan-600/40"
+                                />
+                            </div>
+                        </div>
+
+                        {/* 2. Middle: Interactive Radar Hub */}
+                        <div className="hidden md:flex items-center justify-center gap-6 pointer-events-auto z-20">
+
+                            {/* Button 1 (Left Outer) - Tech Info */}
+                            <button
+                                onClick={() => setShowTechInfo(true)}
+                                className="w-10 h-10 bg-zinc-900 border border-zinc-700 hover:bg-cyan-950 hover:border-cyan-500 rounded-full transition-all duration-300 flex items-center justify-center group shadow-[0_0_10px_rgba(0,0,0,0.5)]"
+                                title="System Specs"
+                            >
+                                <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full group-hover:animate-ping" />
+                            </button>
+
+                            {/* Button 2 (Left Inner) - Warp Speed */}
+                            <button
+                                onClick={() => setIsWarpSpeed(!isWarpSpeed)}
+                                className={`w-10 h-10 bg-zinc-900 border ${isWarpSpeed ? 'border-green-400 bg-green-900/20' : 'border-zinc-700'} hover:bg-green-950 hover:border-green-500 rounded-full transition-all duration-300 flex items-center justify-center group shadow-[0_0_10px_rgba(0,0,0,0.5)]`}
+                                title="Engage Hyperdrive"
+                            >
+                                <div className={`w-1.5 h-1.5 ${isWarpSpeed ? 'bg-green-400 animate-ping' : 'bg-green-500'} rounded-full opacity-50 group-hover:opacity-100`} />
+                            </button>
+
+                            {/* Central Radar */}
+                            <div className="w-16 h-16 border-2 border-zinc-800 rounded-full bg-black relative flex items-center justify-center shadow-[0_0_20px_rgba(0,0,0,0.8)]">
+                                <div className={`absolute inset-0 border-2 border-t-transparent ${theme === 'cyan' ? 'border-cyan-900/80' : theme === 'red' ? 'border-red-900/80' : 'border-green-900/80'} rounded-full animate-spin`} />
+                                <div className={`w-1.5 h-1.5 ${theme === 'cyan' ? 'bg-cyan-500' : theme === 'red' ? 'bg-red-500' : 'bg-green-500'} rounded-full animate-pulse`} />
+                            </div>
+
+                            {/* Button 3 (Right Inner) - Placeholder (was Amber) */}
+                            <button className="w-10 h-10 bg-zinc-900 border border-zinc-700 hover:bg-amber-950 hover:border-amber-500 rounded-full transition-all duration-300 flex items-center justify-center group shadow-[0_0_10px_rgba(0,0,0,0.5)]">
+                                <div className="w-1.5 h-1.5 bg-amber-500 rounded-full opacity-50 group-hover:opacity-100" />
+                            </button>
+
+                            {/* Button 4 (Right Outer) - Theme Switch */}
+                            <button
+                                onClick={cycleTheme}
+                                className={`w-10 h-10 bg-zinc-900 border ${theme === 'red' ? 'border-red-500' : theme === 'green' ? 'border-green-500' : 'border-zinc-700'} hover:border-white rounded-full transition-all duration-300 flex items-center justify-center group shadow-[0_0_10px_rgba(0,0,0,0.5)]`}
+                                title="System Mode switch"
+                            >
+                                <div className={`w-1.5 h-1.5 ${theme === 'cyan' ? 'bg-cyan-500' : theme === 'red' ? 'bg-red-500' : 'bg-green-500'} rounded-full opacity-100`} />
+                            </button>
+
+                        </div>
+
+                        {/* 3. Right: Code Terminal (Star Wars / C++) */}
+                        <div className="w-1/3 h-full py-1 opacity-80 hover:opacity-100 transition-opacity">
+                            <CodeTerminal theme={theme} />
                         </div>
                     </div>
                 </div>
@@ -138,6 +207,9 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
             <div className="relative z-40 w-full h-full p-[12px] md:p-[24px]">
                 {children}
             </div>
+
+            {/* Modals */}
+            <TechInfoModal isOpen={showTechInfo} onClose={() => setShowTechInfo(false)} />
         </div>
     );
 }

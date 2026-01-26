@@ -3,8 +3,9 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
+import { IdeInfoPanel } from "@/app/components/ide-info-panel";
 
 const navigation = [
   { name: "Projects", href: "/projects" },
@@ -12,36 +13,6 @@ const navigation = [
 ];
 
 export default function Home() {
-  const [hasInteracted, setHasInteracted] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    const userExperience = sessionStorage.getItem("userExperience");
-    if (userExperience === "withSound") {
-      startExperience(true);
-    } else if (userExperience === "noSound") {
-      startExperience(false);
-    }
-  }, []);
-
-  const startExperience = (withSound: boolean) => {
-    sessionStorage.setItem("userExperience", withSound ? "withSound" : "noSound");
-
-    if (withSound) {
-      const audio = new Audio('/sounds/Millennium_Falcon_ship_flying_Sound.mp3');
-      audio.volume = 1.0;
-      audio.play()
-        .then(() => {
-          setHasInteracted(true);
-        })
-        .catch(error => {
-          console.error("Error playing audio:", error);
-          setHasInteracted(true);
-        });
-    } else {
-      setHasInteracted(true);
-    }
-  };
-
   return (
     <div className="flex flex-col items-center justify-center w-full h-full relative z-40 overflow-hidden px-10">
 
@@ -91,6 +62,9 @@ export default function Home() {
           </div>
         </motion.div>
       </div>
+
+      {/* Info Panel (VS Code Style) - Bottom Left */}
+      <IdeInfoPanel />
 
     </div>
   );
