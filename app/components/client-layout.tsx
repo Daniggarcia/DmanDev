@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Particles from "./particles";
 import { CodeTerminal } from "./code-terminal";
 import { TechInfoModal } from "./tech-info-modal";
-import { DeepScanOverlay } from "./deep-scan-overlay";
+import { ProjectMonitor } from "./project-monitor";
 
 import { ThemeProvider, useTheme } from "./theme-provider";
 
@@ -62,11 +62,7 @@ function InnerCockpitLayout({ children }: { children: React.ReactNode }) {
     const isProjects = pathname === "/projects" || pathname.startsWith("/projects/");
 
     const [showTechInfo, setShowTechInfo] = useState(false);
-    const [isScanning, setIsScanning] = useState(false);
-
-    const triggerDeepScan = () => {
-        setIsScanning(!isScanning);
-    };
+    const [showProjectMonitor, setShowProjectMonitor] = useState(false);
 
     // Warp & Galaxy Logic
     const [isWarpSpeed, setIsWarpSpeed] = useState(false);
@@ -243,10 +239,10 @@ function InnerCockpitLayout({ children }: { children: React.ReactNode }) {
                     </div>
 
                     {/* Bottom Status Bar */}
-                    <div className="absolute bottom-0 left-0 w-full h-12 md:h-20 bg-zinc-900 border-t-2 border-zinc-800 flex justify-between items-center px-4 md:px-10 gap-8 overflow-hidden">
+                    <div className="absolute bottom-0 left-0 w-full h-12 md:h-20 bg-zinc-900 border-t-2 border-zinc-800 flex justify-center md:justify-between items-center px-4 md:px-10 gap-8 overflow-hidden">
 
                         {/* 1. Left: System Status (Smaller Bar) */}
-                        <div className="flex flex-col gap-1 w-1/3">
+                        <div className="hidden md:flex flex-col gap-1 w-1/3">
                             <div className="text-[8px] text-zinc-600 font-mono tracking-widest uppercase">System Load</div>
                             <div className="w-full h-1 bg-zinc-950 rounded-full overflow-hidden flex">
                                 <motion.div
@@ -263,7 +259,7 @@ function InnerCockpitLayout({ children }: { children: React.ReactNode }) {
                             {/* Button 1 (Left Outer) - Tech Info */}
                             <button
                                 onClick={() => setShowTechInfo(true)}
-                                className="w-10 h-10 bg-zinc-900 border border-zinc-700 hover:bg-cyan-950 hover:border-cyan-500 rounded-full transition-all duration-300 flex items-center justify-center group shadow-[0_0_10px_rgba(0,0,0,0.5)]"
+                                className="w-8 h-8 md:w-10 md:h-10 bg-zinc-900 border border-zinc-700 hover:bg-cyan-950 hover:border-cyan-500 rounded-full transition-all duration-300 flex items-center justify-center group shadow-[0_0_10px_rgba(0,0,0,0.5)]"
                                 title="System Specs"
                             >
                                 <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full group-hover:animate-ping" />
@@ -272,7 +268,7 @@ function InnerCockpitLayout({ children }: { children: React.ReactNode }) {
                             {/* Button 2 (Left Inner) - Warp Speed (Toggle) */}
                             <button
                                 onClick={() => setIsWarpSpeed(!isWarpSpeed)}
-                                className={`w-10 h-10 bg-zinc-900 border ${isWarpSpeed ? 'border-green-400 bg-green-900/20' : 'border-zinc-700'} hover:bg-green-950 hover:border-green-500 rounded-full transition-all duration-300 flex items-center justify-center group shadow-[0_0_10px_rgba(0,0,0,0.5)]`}
+                                className={`w-8 h-8 md:w-10 md:h-10 bg-zinc-900 border ${isWarpSpeed ? 'border-green-400 bg-green-900/20' : 'border-zinc-700'} hover:bg-green-950 hover:border-green-500 rounded-full transition-all duration-300 flex items-center justify-center group shadow-[0_0_10px_rgba(0,0,0,0.5)]`}
                                 title="Toggle Warp (Stars Only)"
                             >
                                 <div className={`w-1.5 h-1.5 ${isWarpSpeed ? 'bg-green-400 animate-ping' : 'bg-green-500'} rounded-full opacity-50 group-hover:opacity-100`} />
@@ -280,18 +276,18 @@ function InnerCockpitLayout({ children }: { children: React.ReactNode }) {
 
                             {/* Central Radar */}
                             <button
-                                onClick={triggerDeepScan}
-                                className={`w-16 h-16 border-2 ${isScanning ? 'border-cyan-500 animate-[spin_2s_linear_infinite]' : 'border-zinc-800'} rounded-full bg-black relative flex items-center justify-center shadow-[0_0_20px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-cyan-500/50`}
-                                title="Initiate Deep Scan"
+                                onClick={() => setShowProjectMonitor(true)}
+                                className={`w-12 h-12 md:w-16 md:h-16 border-2 ${showProjectMonitor ? 'border-cyan-500 shadow-[0_0_30px_rgba(0,255,255,0.4)]' : 'border-zinc-800'} rounded-full bg-black relative flex items-center justify-center shadow-[0_0_20px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(0,255,255,0.2)]`}
+                                title="Open Project Monitor"
                             >
-                                <div className={`absolute inset-0 border-2 border-t-transparent ${isScanning ? 'border-cyan-500' : colors.border + '/80'} rounded-full animate-spin`} />
-                                <div className={`w-1.5 h-1.5 ${isScanning ? 'bg-cyan-400' : colors.bg} rounded-full animate-pulse`} />
+                                <div className={`absolute inset-0 border-2 border-t-transparent ${showProjectMonitor ? 'border-cyan-500 animate-[spin_4s_linear_infinite]' : colors.border + '/80 animate-[spin_10s_linear_infinite]'} rounded-full opacity-80`} />
+                                <div className={`w-1.5 h-1.5 ${showProjectMonitor ? 'bg-cyan-400' : colors.bg} rounded-full animate-pulse`} />
                             </button>
 
                             {/* Button 3 (Right Inner) - Hyper Jump (New!) */}
                             <button
                                 onClick={triggerHyperJump}
-                                className="w-10 h-10 bg-zinc-900 border border-zinc-700 hover:bg-amber-950 hover:border-amber-500 rounded-full transition-all duration-300 flex items-center justify-center group shadow-[0_0_10px_rgba(0,0,0,0.5)]"
+                                className="w-8 h-8 md:w-10 md:h-10 bg-zinc-900 border border-zinc-700 hover:bg-amber-950 hover:border-amber-500 rounded-full transition-all duration-300 flex items-center justify-center group shadow-[0_0_10px_rgba(0,0,0,0.5)]"
                                 title="Initiate Hyper Jump"
                             >
                                 <div className={`w-1.5 h-1.5 bg-amber-500 rounded-full opacity-50 group-hover:opacity-100 ${isWarpSpeed ? 'animate-ping' : ''}`} />
@@ -300,7 +296,7 @@ function InnerCockpitLayout({ children }: { children: React.ReactNode }) {
                             {/* Button 4 (Right Outer) - Theme Switch */}
                             <button
                                 onClick={cycleTheme}
-                                className={`w-10 h-10 bg-zinc-900 border ${colors.border} hover:border-white rounded-full transition-all duration-300 flex items-center justify-center group shadow-[0_0_10px_rgba(0,0,0,0.5)]`}
+                                className={`w-8 h-8 md:w-10 md:h-10 bg-zinc-900 border ${colors.border} hover:border-white rounded-full transition-all duration-300 flex items-center justify-center group shadow-[0_0_10px_rgba(0,0,0,0.5)]`}
                                 title="System Mode switch"
                             >
                                 <div className={`w-1.5 h-1.5 ${colors.bg} rounded-full opacity-100`} />
@@ -309,7 +305,7 @@ function InnerCockpitLayout({ children }: { children: React.ReactNode }) {
                         </div>
 
                         {/* 3. Right: Code Terminal (Star Wars / C++) */}
-                        <div className="w-1/3 h-full py-1 opacity-80 hover:opacity-100 transition-opacity">
+                        <div className="hidden md:block w-1/3 h-full py-1 opacity-80 hover:opacity-100 transition-opacity">
                             <CodeTerminal theme={theme} />
                         </div>
                     </div>
@@ -323,7 +319,7 @@ function InnerCockpitLayout({ children }: { children: React.ReactNode }) {
 
             {/* Modals */}
             <TechInfoModal isOpen={showTechInfo} onClose={() => setShowTechInfo(false)} />
-            <DeepScanOverlay isScanning={isScanning} onScanComplete={() => setIsScanning(false)} />
+            <ProjectMonitor isOpen={showProjectMonitor} onClose={() => setShowProjectMonitor(false)} />
         </div>
     );
 }

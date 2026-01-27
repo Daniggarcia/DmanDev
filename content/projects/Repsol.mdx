@@ -1,9 +1,131 @@
 ---
-title: "Título del Proyecto"
-description: "Descripción breve del proyecto."
-date: "2024-01-01"  # Fecha en formato "YYYY-MM-DD"
-published: true     # O false si el proyecto no está publicado
-slug: "mi-proyecto" # Slug único para el proyecto
+title: "Deloitte: Repsol: Enterprise Risk Management Technology (ERMT)"
+description: "Development and maintenance of critical ecosystems for risk management (ERMT) in the energy sector, using complex architectures in .NET and supporting strategic decision-making."
+date: "2024-05-01"
+published: true
+slug: deloitte-repsol-ermt
 ---
 
-Contenido del proyecto aquí...
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Logo_de_Repsol.jpg" alt="Repsol Logo" />
+</p>
+
+In the environment of large energy corporations like Repsol, risk applications are not merely administrative tools; they are **critical corporate systems** that support strategic decisions and ensure strict regulatory compliance.
+
+My work focused on the **ERMT (Enterprise Risk Management Technology)** ecosystem, developing robust solutions under **.NET Core 3.1 and .NET 6** (C# and Visual Basic), designed to manage the inherent complexity of enterprise, financial, operational, and regulatory risk.
+
+## 1. The Energy Risk Ecosystem
+
+Development in this sector implies understanding and modeling highly complex business domains. Unlike conventional applications, here the focus is on **data integrity, traceability, and simulation**.
+
+### 🛠️ Enterprise Risk (ERM)
+The core of corporate strategy. We developed systems for:
+*   **Corporate Risk Catalogs:** Dynamic inventory of threats.
+*   **Impact × Probability Assessment:** Algorithms for automatic generation of **Heatmaps** and risk matrices.
+*   **Tracking of KRIs (Key Risk Indicators):** Continuous monitoring of key indicators.
+*   **Control and Mitigation:** Management of action plans and internal/external audits.
+    *   *Examples:* Refinery shutdown risk, critical supplier dependencies, reputational risk.
+
+### 📉 Market and Financial Risk
+Given the volatility of the energy sector, these applications require high mathematical precision:
+*   Price Management (Crude, Gas, Electricity) and Exchange Rates.
+*   Calculation of **Value at Risk (VaR)** and Stress Testing.
+*   Scenario Simulation for Hedging (Derivatives, Swaps).
+*   Direct integration with trading systems (ETRM).
+
+### ⚙️ Operational Risk
+Critical systems for the physical and operational safety of industrial assets:
+*   Management of **HSE (Health, Safety & Environment)** incidents.
+*   Predictive vs. corrective maintenance of assets (turbines, plants).
+*   Failure analysis and prevention of technological obsolescence.
+
+### ⚖️ Regulatory Risk and Compliance
+Regulatory compliance is "heavy" and essential in Energy:
+*   Support for global regulations (SOX, ESMA, CNMC).
+*   **Total Traceability:** Every action is recorded for audits.
+*   Management of Non-Conformities and mandatory regulatory reporting.
+
+---
+
+## 2. Technical Anatomy of a Risk Application
+
+From an engineering perspective, these applications are distinguished by very demanding non-functional requirements.
+
+**a) Structured Data Management**
+It is not enough to save the current state. Systems of **full historical versioning** (Temporal Tables, Event Sourcing) are implemented to answer: *"What was the exact status of this risk on February 14th two years ago?"*.
+
+**b) Complex Approval Workflows**
+Workflows are not linear. They include complex state machines:
+> *Creation -> Lead Validation -> Committee Review -> Audit Approval -> Action Plan -> Follow-up.*
+All managed with granular control of deadlines, alerts, and escalations.
+
+**c) Critical Corporate Reporting**
+The data presentation layer is vital for Top Management:
+*   Generation of executive reports (massive PDF/Excel).
+*   Interactive dashboards integrated with **Power BI / Tableau**.
+
+**d) Enterprise Integrations**
+The system does not live in isolation; it acts as a data orchestrator that talks with:
+*   **SAP** (Finance and Assets).
+*   **ETRM** (Energy Trading Systems).
+*   Corporate Directories (AD/SSO) for identity management.
+
+---
+
+## 3. Usual Tech Stack
+
+In high-level consulting projects (like Deloitte/Repsol), the stack prioritizes robustness over novelty (Stable Tech).
+
+<table>
+  <thead>
+    <tr>
+      <th>Layer</th>
+      <th>Key Technologies</th>
+      <th>Focus</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Backend</strong></td>
+      <td><strong>.NET / .NET Core 6</strong></td>
+      <td>Layered architecture (DDD), Microservices, strong typed REST APIs. Heavy business logic.</td>
+    </tr>
+    <tr>
+      <td><strong>Frontend</strong></td>
+      <td><strong>Angular / React</strong></td>
+      <td>Complex dynamic forms. UX focused on efficiency and information density, not aesthetics.</td>
+    </tr>
+    <tr>
+      <td><strong>Data</strong></td>
+      <td><strong>PostgreSQL</strong></td>
+      <td>Highly normalized models. Heavy use of Stored Procedures for critical data logic.</td>
+    </tr>
+    <tr>
+      <td><strong>Security</strong></td>
+      <td><strong>OAuth2 / SSO</strong></td>
+      <td>Fine-grained roles and permissions. Mandatory and immutable change auditing.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 4. Development Reality: Myths vs. Reality
+
+It is important to understand the context of these projects to properly value the technical profile.
+
+*   ❌ **It is not "Magic AI":** Although it is talked about, the base is deterministic logic and robust statistics.
+*   ❌ **It is not "Design-First":** The priority is not a beautiful UI, but a **functional UI** that allows absolute traceability.
+*   ❌ **It is not Pure Cloud-Native:** Often they are hybrid ecosystems due to data regulations and legacy systems.
+*   ✅ **It is Pure Governance:** They are slow systems to change because every change has massive legal and operational implications.
+
+---
+
+## 5. Profile Value
+
+Working in **ERMT with .NET** defines a highly valuable niche profile. It is not just about knowing how to program, but about:
+*   Ability to **model complex and critical business logic**.
+*   Deep understanding of systems with **high data integrity**.
+*   Experience in **audit, compliance, and data governance** environments.
+
+It is a profile that, while less "flashy" than consumer product development, is fundamental and highly paid in the backbone structures of large multinationals.

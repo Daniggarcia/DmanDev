@@ -4,7 +4,7 @@ import React from "react";
 
 export const IdeInfoPanel = () => {
     return (
-        <div className="block absolute bottom-20 left-2 md:bottom-0 md:left-0 mb-4 md:mb-32 ml-0 md:ml-24 w-[90vw] md:w-full max-w-sm lg:max-w-md bg-[#1e1e1e]/40 backdrop-blur-md border border-[#333]/50 rounded-lg shadow-2xl font-mono text-xs overflow-hidden select-none z-30 scale-90 md:scale-100 origin-bottom-left">
+        <div className="hidden xl:block absolute bottom-20 left-2 md:bottom-0 md:left-0 mb-4 md:mb-32 ml-0 md:ml-24 w-[90vw] md:w-full max-w-sm lg:max-w-md bg-[#1e1e1e]/40 backdrop-blur-md border border-[#333]/50 rounded-lg shadow-2xl font-mono text-xs overflow-hidden select-none z-30 scale-90 md:scale-100 origin-bottom-left">
             {/* VS Code Title Bar */}
             <div className="bg-[#252526]/60 px-3 py-1 flex items-center justify-between border-b border-[#333]/50">
                 <span className="text-[#cccccc]">cockpit_controls.ts</span>
